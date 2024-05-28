@@ -136,7 +136,7 @@ foreach (Persona persona in MayoresEdad)
 
 Console.WriteLine("3. Ordenar por edad de más joven a menos joven.");
 
-var OrdenarFecha = from persona in Gente orderby persona.fechaNacimiento select persona;
+var OrdenarFecha = from persona in Gente orderby persona.fechaNacimiento descending select persona;
 
 foreach (Persona persona in OrdenarFecha)
 {
@@ -177,9 +177,11 @@ foreach (Persona persona in SueldoMedio)
 
 average = Math.Round(average / SueldoMedio.Count(), 2);
 
+Console.WriteLine("Sueldo medio: " + average);
+
 Console.WriteLine("7. Ordenar por sueldo, para aquellos mayores de edad que tienen un sueldo par.");
 
-var ordenar = from persona in Gente where persona.sueldo % 2 == 0 || (System.DateTime.Now.AddYears(-18) > persona.fechaNacimiento)  orderby persona.sueldo select persona;
+var ordenar = from persona in Gente where persona.sueldo % 2 == 0 && (System.DateTime.Now.AddYears(-18) > persona.fechaNacimiento)  orderby persona.sueldo select persona;
 
 foreach (Persona persona in ordenar)
 {
